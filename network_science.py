@@ -151,3 +151,76 @@ density_directed = nx.density(G_directed)
 print(f"Densidade da rede não direcionada: {density_undirected}")
 print(f"Densidade da rede direcionada: {density_directed}" )
 # %%
+
+## CÁLCULO DO GRAU
+# Rede não Direcionada
+
+# %%
+
+G = nx.star_graph(9)
+nx.draw_networkx(G)
+
+# %%
+G.nodes
+# %%
+G.edges
+# %%
+
+# dicionário com o grau de cada nó:
+G.degree
+# %%
+G.degree[0]
+# %%
+G.degree[1]
+# %%
+
+for node, degree in G.degree:
+    print(f'Nó: {node}, grau {degree}')
+# %%
+for node, degree in G.degree:
+    if degree > 1:
+        print(f'Nó: {node}, grau {degree}')
+# %%
+list(G.adj[0])
+# %%
+list(G.adj[1])
+
+# %%
+# Rede Direcionada
+
+# %%
+G = nx.gnc_graph(6)
+nx.draw_circular(G, with_labels=True)
+
+# %%
+G.degree(0)
+# %%
+G.in_degree(0)
+# %%
+G.out_degree(0)
+# %%
+# lista de adjacência vazia:
+# %%
+G.adj[0]
+# %%
+
+# Rede com peso:
+# %%
+
+G = nx.path_graph(range(5))
+nx.set_edge_attributes(G, 1, 'weight')
+G.add_edge(2, 4, weight=2)
+G[2][3]['weight'] = 2
+# %%
+
+pos = nx.spring_layout(G)
+labels = nx.get_edge_attributes(G, 'weight')
+nx.draw_networkx(G, pos)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
+# %%
+G.degree(2, weight='weight')
+# %%
+G.degree(3, weight='weight')
+# %%
+G.degree(0, weight='weight')
+# %%
